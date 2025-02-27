@@ -1,22 +1,22 @@
-enum Type {
+export enum Type {
     CLASSIC = "CLASSIC",
     SERVER_SIDE = "SERVER_SIDE",
     MVT = "MVT"
 }
 
-enum Status {
+export enum Status {
     DRAFT = "DRAFT",
     ONLINE = "ONLINE",
     PAUSED = "PAUSED",
     STOPPED = "STOPPED",
 }
 
-interface Site {
+export interface Site {
     id: number;
     url: string;
 }
 
-interface Test {
+export interface Test {
     id: number;
     name: string;
     type: Type;
