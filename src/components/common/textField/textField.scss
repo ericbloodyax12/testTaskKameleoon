@@ -1,0 +1,22 @@
+.inputContainer {
+  position: relative;
+
+}
+.textField {
+  color: #D1D1D1;
+  padding-left: 44px;
+  border: 1px solid #EBEBEB;
+  background: #FFFFFF;
+  width: 954px;
+  height: 45px;
+border-radius: 15px;
+}
+
+.search-icon {
+  position: absolute; // Позиционируем иконку абсолютно внутри родительского элемента
+  z-index: 1;
+  top: 50%; // Размещаем её вертикально по центру относительно родительского контейнера
+  left: 10px; // Устанавливаем её слева от поля ввода
+  transform: translateY(-50%); // Дополнительная коррекция для вертикального центрирования
+
+}

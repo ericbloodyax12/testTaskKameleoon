@@ -1,6 +1,6 @@
 import {JSX} from "react";
 
-import {DashboardPage} from "../pages/DashboardPage.tsx";
+import {DashboardPage} from "../pages/DashboardPage/DashboardPage.tsx";
 import {ResultsPage} from "../pages/ResultsPage.tsx";
 import {FinalizedPage} from "../pages/FinalizedPage.tsx";
 

@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
-import {useData} from "../context/DataContext";
+import {useData} from "../../context/DataContext.tsx";
 
+import './dashboardPage.scss'
+import {TextField} from "../../components/common/textField/TextField.tsx";
 
 type TDashboardPageProps = {}
 
-export const DashboardPage: React.FC<TDashboardPageProps> = (props) => {
+export const DashboardPage: React.FC<TDashboardPageProps> = ({}) => {
 
     const { tests, loading, error } = useData();
     const [filter, setFilter] = useState('');
@@ -22,15 +24,8 @@ export const DashboardPage: React.FC<TDashboardPageProps> = (props) => {
     );
 
     return (
-        <div>
-            <input
-                type="text"
-                placeholder="Filter by name..."
-                value={filter}
-                onChange={(e) => setFilter(e.target.value)}
-
-            />
-
+        <div className={"main-div-container-dashboard"}>
+            <TextField filter={filter} setFilter={setFilter}/>
             <table >
                 <thead>
                 <tr>

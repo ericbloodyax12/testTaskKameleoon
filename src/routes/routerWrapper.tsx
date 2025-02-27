@@ -1,7 +1,7 @@
 import {createBrowserRouter, createHashRouter, Navigate, RouterProvider} from "react-router-dom";
 import {Layout} from "../components/layout/Layout.tsx";
 import {paths, routesConfig} from "./Routes.tsx";
-import {DashboardPage} from "../pages/DashboardPage.tsx";
+import {DashboardPage} from "../pages/DashboardPage/DashboardPage.tsx";
 import {PrivateRouteWrapper} from "./PrivateRouteWrapper.tsx";
 
 

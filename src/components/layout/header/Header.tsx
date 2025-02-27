@@ -1,12 +1,14 @@
 import React from 'react';
 
+import './header.scss'
+
 type THeaderProps = {}
 
-export const Header: React.FC<THeaderProps> = (props) => {
+export const Header: React.FC<THeaderProps> = ({}) => {
     return (
-        <div>
-            Dashboard
-        </div>
+        <header className="header">
+            <h1 className="header__title">Dashboard</h1>
+        </header>
     );
 }
 
