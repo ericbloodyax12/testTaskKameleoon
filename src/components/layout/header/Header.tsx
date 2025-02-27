@@ -5,7 +5,7 @@ type THeaderProps = {}
 export const Header: React.FC<THeaderProps> = (props) => {
     return (
         <div>
-            Header
+            Dashboard
         </div>
     );
 }

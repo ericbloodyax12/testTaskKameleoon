@@ -1,4 +1,3 @@
-
 import React, {createContext, useEffect, useState} from "react";
 import {apiService, Site, Test} from "../services/api.ts";
 
@@ -20,19 +19,28 @@ export const  DataProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        console.log('useEffect triggered');
         const fetchData = async () => {
             try {
-                const [testsData, sitesData] = await Promise.all([apiService.getTests(), apiService.getSites()]);
+                console.log('Fetching data...');
+                const [testsData, sitesData] = await Promise.all([
+                    apiService.getTests(), apiService.getSites()
+                ]);
+
+                console.log('Tests Data:', testsData);
+                console.log('Sites Data:', sitesData);
                 setTests(testsData);
                 setSites(sitesData);
             }
             catch (err) {
+                console.error('Error fetching data:', err);
                 setError('Failed to load data');
             }
             finally {
                 setLoading(false);
             }
         }
+        fetchData();
     }, [])
 
     return (
