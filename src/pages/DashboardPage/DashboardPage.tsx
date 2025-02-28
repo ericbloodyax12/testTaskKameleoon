@@ -5,9 +5,9 @@ import {NavigateButton} from "../../components/common/navigateButton/NavigateBut
 
 
 import './dashboardPage.scss'
-import {ESites, SITE_COLORS, SITE_URLS} from "../../services/api.ts";
-import {ENavigateButtonCaption, getNavigateButtonCaption} from "../../utils/getNavigateButtonCaption.ts";
-import {useNavigate} from "react-router-dom";
+import {ESites, SITE_COLORS, SITE_URLS, Test} from "../../services/api.ts";
+import {EPathCaption, getNavigateButtonCaption} from "../../utils/getNavigateButtonCaption.ts";
+import {NavigateOptions, useNavigate} from "react-router-dom";
 import {paths} from "../../routes/Routes.tsx";
 
 type TDashboardPageProps = {}
@@ -17,6 +17,15 @@ export const DashboardPage: React.FC<TDashboardPageProps> = ({}) => {
     const {tests, loading, error} = useData();
     const [filter, setFilter] = useState('');
     const navigate = useNavigate();
+
+
+    const navigator = (test: Test): [string, NavigateOptions] => {
+        const pathTrack = getNavigateButtonCaption(test.status) === EPathCaption.FINALIZE
+        return pathTrack
+            ? [paths.FINALIZE(test.id), {state: {testName: test.name, headerCaption: EPathCaption.FINALIZE}}]
+            : [paths.RESULTS(test.id), {state: {testName: test.name, headerCaption: EPathCaption.RESULTS}}]
+    }
+
     if (loading) {
         return <p>Loading...</p>;
     }
@@ -58,12 +67,11 @@ export const DashboardPage: React.FC<TDashboardPageProps> = ({}) => {
                             <td>{SITE_URLS[test.siteId as ESites]}</td>
                             <td>
                                 <NavigateButton
-                                    onNavigate={() => navigate(
-                                        getNavigateButtonCaption(test.status) === ENavigateButtonCaption.FINALIZE
-                                            ?
-                                            paths.FINALIZE(test.id)
-                                            :
-                                            paths.RESULTS(test.id), { state: { testName: test.name } })}
+                                    isTableButton
+                                    onNavigate={() => {
+                                        const [path, options] = navigator(test)
+                                        navigate(path, options)
+                                    }}
                                 >
                                     {getNavigateButtonCaption(test.status)}
                                 </NavigateButton>

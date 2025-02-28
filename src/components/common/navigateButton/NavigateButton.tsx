@@ -1,18 +1,27 @@
 import React, {MouseEventHandler} from 'react';
 
 import "./navigateButton.scss"
+import {BackIcon} from "../../../assets/icons/BackIcon.tsx";
+
 
 type TNavigateButtonProps = {
-    onNavigate?: MouseEventHandler<HTMLButtonElement> | undefined;
-    children: string
+    onNavigate?: MouseEventHandler<HTMLButtonElement | HTMLDivElement> | undefined;
+    children?: string
+    isTableButton?: boolean
 }
 
-export const NavigateButton: React.FC<TNavigateButtonProps> = (props) => {
+export const NavigateButton: React.FC<TNavigateButtonProps> = ({onNavigate, children, isTableButton}) => {
     return (
         <div className={"navigate-button-container"}>
-            <button onClick={props.onNavigate} className={"navigate-button"}>
-                {props.children}
-            </button>
+            {isTableButton
+                ?   <button onClick={onNavigate} className={"navigate-button"}>
+                        {children}
+                    </button>
+                :   <div className={"navigate-button--back"} onClick={onNavigate}>
+                        <BackIcon/>
+                        Back
+                    </div>
+            }
         </div>
     );
 }

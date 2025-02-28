@@ -1,13 +1,14 @@
 import {JSX} from "react";
 
 import {DashboardPage} from "../pages/DashboardPage/DashboardPage.tsx";
-import {ResultsPage} from "../pages/ResultsPage.tsx";
+import {ResultsPage} from "../pages/resultPage/ResultsPage.tsx";
 import {FinalizedPage} from "../pages/FinalizedPage.tsx";
+import {EPathCaption} from "../utils/getNavigateButtonCaption.ts";
 
 export const paths = {
     DASHBOARD: '/',
-    RESULTS: (testId: number) => `/results/${testId}`,
-    FINALIZE:  (testId: number) => `/finalize/${testId}`,
+    RESULTS: (testId: number) => `/${EPathCaption.RESULTS.toLowerCase()}/${testId}`,
+    FINALIZE:  (testId: number) => `/${EPathCaption.FINALIZE.toLowerCase()}/${testId}`,
 };
 
 type RouteConfigType = {
@@ -25,13 +26,13 @@ export const routesConfig: RouteConfigType[] = [
     },
     {
         routeName: "results",
-        path: '/results/:testId',
+        path: `/${EPathCaption.RESULTS.toLowerCase()}/:testId`,
         element: <ResultsPage/>,
         private: false // можно будет потом задавать true типо для "авторизованных пользователей"  (добавил для примера)
     },
     {
         routeName: "finalize",
-        path: '/finalize/:testId',
+        path: `/${EPathCaption.FINALIZE.toLowerCase()}/:testId`,
         element: <FinalizedPage/>,
     },
 ]
