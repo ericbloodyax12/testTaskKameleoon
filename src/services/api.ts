@@ -4,6 +4,25 @@ export enum Type {
     MVT = "MVT"
 }
 
+
+export enum ESites {
+    Market = 1,
+    Delivery = 2,
+    Games = 3
+}
+
+export const SITE_URLS: { [key in ESites]: string } = {
+    [ESites.Market]: "https://market.company.com",
+    [ESites.Delivery]: "https://www.delivery.company.com",
+    [ESites.Games]: "http://games.company.com"
+};
+export const SITE_COLORS: { [key in ESites]: string } = {
+    [ESites.Market]: "#E14165",
+    [ESites.Delivery]: "#C2C2FF",
+    [ESites.Games]: "#8686FF"
+};
+
+
 export enum Status {
     DRAFT = "DRAFT",
     ONLINE = "ONLINE",
