@@ -40,7 +40,7 @@ export const DashboardPage: React.FC<TDashboardPageProps> = ({}) => {
 
     return (
         <div className={"main-div-container-dashboard"}>
-            <TextField filter={filter} setFilter={setFilter}/>
+            <TextField filter={filter} setFilter={setFilter} count={tests.length}/>
             <table className={"table-container"}>
                 <thead>
                 <tr>

@@ -5,9 +5,10 @@ import './textField.scss'
 type TTextFieldProps = {
     filter: string;
     setFilter:  React.Dispatch<React.SetStateAction<string>>
+    count: number
 }
 
-export const TextField: React.FC<TTextFieldProps> = ({filter,setFilter}) => {
+export const TextField: React.FC<TTextFieldProps> = ({filter,setFilter, count}) => {
     return (
         <div className={"inputContainer"}>
             <SearchIcon className={"search-icon"}/>
@@ -18,8 +19,8 @@ export const TextField: React.FC<TTextFieldProps> = ({filter,setFilter}) => {
                 onChange={(e) => setFilter(e.target.value)}
                 className={'textField'}
             />
-            <div>
-                {}
+            <div className={"input-count"}>
+                {count} tests
             </div>
         </div>
     );
