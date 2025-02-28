@@ -63,7 +63,7 @@ export const DashboardPage: React.FC<TDashboardPageProps> = ({}) => {
                                             ?
                                             paths.FINALIZE(test.id)
                                             :
-                                            paths.RESULTS(test.id))}
+                                            paths.RESULTS(test.id), { state: { testName: test.name } })}
                                 >
                                     {getNavigateButtonCaption(test.status)}
                                 </NavigateButton>
