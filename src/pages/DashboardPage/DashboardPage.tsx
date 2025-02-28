@@ -6,7 +6,9 @@ import {NavigateButton} from "../../components/common/navigateButton/NavigateBut
 
 import './dashboardPage.scss'
 import {ESites, SITE_COLORS, SITE_URLS} from "../../services/api.ts";
-import {getNavigateButtonCaption} from "../../utils/getNavigateButtonCaption.ts";
+import {ENavigateButtonCaption, getNavigateButtonCaption} from "../../utils/getNavigateButtonCaption.ts";
+import {useNavigate} from "react-router-dom";
+import {paths} from "../../routes/Routes.tsx";
 
 type TDashboardPageProps = {}
 
@@ -14,7 +16,7 @@ export const DashboardPage: React.FC<TDashboardPageProps> = ({}) => {
 
     const {tests, loading, error} = useData();
     const [filter, setFilter] = useState('');
-
+    const navigate = useNavigate();
     if (loading) {
         return <p>Loading...</p>;
     }
@@ -46,14 +48,26 @@ export const DashboardPage: React.FC<TDashboardPageProps> = ({}) => {
                         <tr key={test.id}>
                             <td>
                                 <div className="table-container__cell">
-                                    <div className={"cell-name-color"} style={{backgroundColor:SITE_COLORS[test.siteId as ESites] }}></div>
+                                    <div className={"cell-name-color"}
+                                         style={{backgroundColor: SITE_COLORS[test.siteId as ESites]}}></div>
                                     <div className={"td-content"}>{test.name}</div>
                                 </div>
                             </td>
                             <td>{test.type}</td>
                             <td>{test.status}</td>
                             <td>{SITE_URLS[test.siteId as ESites]}</td>
-                            <td><NavigateButton>{getNavigateButtonCaption(test.status)}</NavigateButton></td>
+                            <td>
+                                <NavigateButton
+                                    onNavigate={() => navigate(
+                                        getNavigateButtonCaption(test.status) === ENavigateButtonCaption.FINALIZE
+                                            ?
+                                            paths.FINALIZE(test.id)
+                                            :
+                                            paths.RESULTS(test.id))}
+                                >
+                                    {getNavigateButtonCaption(test.status)}
+                                </NavigateButton>
+                            </td>
                         </tr>
                     ))
                 ) : (

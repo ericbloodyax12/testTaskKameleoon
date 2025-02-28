@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {MouseEventHandler} from 'react';
 
 import "./navigateButton.scss"
 
 type TNavigateButtonProps = {
-    onNavigate?: () => void;
+    onNavigate?: MouseEventHandler<HTMLButtonElement> | undefined;
     children: string
 }
 

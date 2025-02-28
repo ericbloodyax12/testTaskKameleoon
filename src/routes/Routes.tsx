@@ -6,8 +6,8 @@ import {FinalizedPage} from "../pages/FinalizedPage.tsx";
 
 export const paths = {
     DASHBOARD: '/',
-    RESULTS: '/results',
-    FINALIZE: '/finalize',
+    RESULTS: (testId: number) => `/results/${testId}`,
+    FINALIZE:  (testId: number) => `/finalize/${testId}`,
 };
 
 type RouteConfigType = {
@@ -25,13 +25,13 @@ export const routesConfig: RouteConfigType[] = [
     },
     {
         routeName: "results",
-        path: paths.RESULTS,
+        path: '/results/:testId',
         element: <ResultsPage/>,
         private: false // можно будет потом задавать true типо для "авторизованных пользователей"  (добавил для примера)
     },
     {
         routeName: "finalize",
-        path: paths.FINALIZE,
+        path: '/finalize/:testId',
         element: <FinalizedPage/>,
     },
 ]

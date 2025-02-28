@@ -5,6 +5,7 @@ export enum Type {
 }
 
 
+
 export enum ESites {
     Market = 1,
     Delivery = 2,
