@@ -1,6 +1,7 @@
 import React from 'react';
 import {Test} from "../../../services/api.ts";
 
+import "./dashboardTd.scss"
 type AdditionalType = {
     [x: number]: any;
     SITE_URLS: {
@@ -22,8 +23,8 @@ type TDashboardTdProps = {
 export const DashboardTd: React.FC<TDashboardTdProps> = ({className,content, statusClass}) => {
     return (
         <td>
-            <div className = {`${className} ${statusClass}`}>
-                <div style={{width: "100%"}}>{typeof content === 'object' ? JSON.stringify(content) : content}</div>
+            <div className={`cell-template ${className} ${statusClass}`}>
+                <div style={{width: "100%", display: "flex", alignItems: "center"}}>{typeof content === 'object' ? JSON.stringify(content) : content}</div>
             </div>
         </td>
     );

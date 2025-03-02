@@ -42,52 +42,54 @@ export const DashboardPage: React.FC<TDashboardPageProps> = ({}) => {
     return (
         <div className={"main-div-container-dashboard"}>
             <TextField filter={filter} setFilter={setFilter} count={filteredTests.length}/>
-            <table className={"table-container"}>
-                <thead>
-                <tr className={'column-names'}>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Status</th>
-                    <th>Site</th>
-                    <></>
-                </tr>
-                </thead>
-                <tbody>
-                {filteredTests.length > 0 ? (
-                    filteredTests.map((test) => (
-                        <tr key={test.id} className={"table-container--row"}>
-                            <td>
-                                <div className="table-container__cell">
-                                    <div className={"cell-name-color"}
-                                         style={{backgroundColor: SITE_COLORS[test.siteId as ESites]}}></div>
-                                    <div className={"td-content--name"}>{test.name}</div>
-                                </div>
-                            </td>
-                           <DashboardTd className={"td-content--type"} content={test.type}/>
-                            <DashboardTd className={"td-content--status"} content={test.status} statusClass={test.status.toLowerCase()}/>
-                            <DashboardTd className={"td-content--sites"} content={SITE_URLS[test.siteId as ESites]}/>
-                            <td>
-                                <NavigateButton
-                                    isTableButton
-                                    buttonStyle = {getNavigateButtonCaption(test.status) === EPathCaption.FINALIZE ? "finalize" : "results"}
-                                    onNavigate={() => {
-                                        const [path, options] = navigator(test)
-                                        navigate(path, options)
-                                    }}
-                                >
-                                    {getNavigateButtonCaption(test.status)}
-                                </NavigateButton>
-                            </td>
+            {
+                filteredTests.length > 0
+                    ? <table className={"table-container"}>
+                        <thead>
+                        <tr className={'column-names'}>
+                            <th style={{paddingLeft: "19px"}}>Name</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Site</th>
+                            <></>
                         </tr>
-                    ))
-                ) : (
-                    <tr className={'results-not-found'}>
-                        <td colSpan={4}>Your search did not match any results.
-                        </td>
-                    </tr>
-                )}
-                </tbody>
-            </table>
+                        </thead>
+                        <tbody>
+                        {
+                            filteredTests.map((test) => (
+                                <tr key={test.id} className={"table-container--row"}>
+                                    <td>
+                                        <div className="table-container__cell">
+                                            <div className={"cell-name-color"}
+                                                 style={{backgroundColor: SITE_COLORS[test.siteId as ESites]}}></div>
+                                            <div className={"td-content--name"}>{test.name}</div>
+                                        </div>
+                                    </td>
+                                    <DashboardTd className={"td-content--type"} content={test.type}/>
+                                    <DashboardTd className={"td-content--status"} content={test.status}
+                                                 statusClass={test.status.toLowerCase()}/>
+                                    <DashboardTd className={"td-content--sites"}
+                                                 content={SITE_URLS[test.siteId as ESites]}/>
+                                    <td>
+                                        <NavigateButton
+                                            isTableButton
+                                            buttonStyle={getNavigateButtonCaption(test.status) === EPathCaption.FINALIZE ? "finalize" : "results"}
+                                            onNavigate={() => {
+                                                const [path, options] = navigator(test)
+                                                navigate(path, options)
+                                            }}
+                                        >
+                                            {getNavigateButtonCaption(test.status)}
+                                        </NavigateButton>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                        </tbody>
+                    </table>
+                    : <div className={"results-not-found"}> Your search did not match any results. </div>
+            }
+
         </div>
     )
         ;

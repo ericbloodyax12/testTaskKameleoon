@@ -1,13 +1,14 @@
 .inputContainer {
   position: relative;
-  width: 954px;
+  width: 100%;
 
   .textField {
     color: #D1D1D1;
     padding-left: 44px;
     border: 1px solid #EBEBEB;
     background: #FFFFFF;
-    width: calc(1001.6px - 44px);
+    //width: calc(1001.6px - 44px);
+    width: 100%;
     height: 45px;
     border-radius: 15px;
     box-sizing: border-box;
