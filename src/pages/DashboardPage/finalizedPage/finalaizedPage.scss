@@ -1,10 +1,11 @@
-.results-page {
+
+.finalized-page {
   display: flex;
   height: 100%;
   flex-direction: column;
   justify-content: space-between;
 
-  .results-page__name{
+  .finalized-page__name{
     width: 506px;
     height: 20px;
     top: 85px;
@@ -16,3 +17,4 @@
     color: #222222;
   }
 }
+

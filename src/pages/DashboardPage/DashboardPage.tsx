@@ -9,6 +9,7 @@ import {ESites, SITE_COLORS, SITE_URLS, Test} from "../../services/api.ts";
 import {EPathCaption, getNavigateButtonCaption} from "../../utils/getNavigateButtonCaption.ts";
 import {NavigateOptions, useNavigate} from "react-router-dom";
 import {paths} from "../../routes/Routes.tsx";
+import {DashboardTd} from "./dashboardTd/DashboardTd.tsx";
 
 type TDashboardPageProps = {}
 
@@ -40,34 +41,35 @@ export const DashboardPage: React.FC<TDashboardPageProps> = ({}) => {
 
     return (
         <div className={"main-div-container-dashboard"}>
-            <TextField filter={filter} setFilter={setFilter} count={tests.length}/>
+            <TextField filter={filter} setFilter={setFilter} count={filteredTests.length}/>
             <table className={"table-container"}>
                 <thead>
-                <tr>
+                <tr className={'column-names'}>
                     <th>Name</th>
                     <th>Type</th>
-                    <th>Site</th>
                     <th>Status</th>
+                    <th>Site</th>
                     <></>
                 </tr>
                 </thead>
                 <tbody>
                 {filteredTests.length > 0 ? (
                     filteredTests.map((test) => (
-                        <tr key={test.id}>
+                        <tr key={test.id} className={"table-container--row"}>
                             <td>
                                 <div className="table-container__cell">
                                     <div className={"cell-name-color"}
                                          style={{backgroundColor: SITE_COLORS[test.siteId as ESites]}}></div>
-                                    <div className={"td-content"}>{test.name}</div>
+                                    <div className={"td-content--name"}>{test.name}</div>
                                 </div>
                             </td>
-                            <td>{test.type}</td>
-                            <td>{test.status}</td>
-                            <td>{SITE_URLS[test.siteId as ESites]}</td>
+                           <DashboardTd className={"td-content--type"} content={test.type}/>
+                            <DashboardTd className={"td-content--status"} content={test.status} statusClass={test.status.toLowerCase()}/>
+                            <DashboardTd className={"td-content--sites"} content={SITE_URLS[test.siteId as ESites]}/>
                             <td>
                                 <NavigateButton
                                     isTableButton
+                                    buttonStyle = {getNavigateButtonCaption(test.status) === EPathCaption.FINALIZE ? "finalize" : "results"}
                                     onNavigate={() => {
                                         const [path, options] = navigator(test)
                                         navigate(path, options)
@@ -79,7 +81,7 @@ export const DashboardPage: React.FC<TDashboardPageProps> = ({}) => {
                         </tr>
                     ))
                 ) : (
-                    <tr>
+                    <tr className={'results-not-found'}>
                         <td colSpan={4}>Your search did not match any results.
                         </td>
                     </tr>

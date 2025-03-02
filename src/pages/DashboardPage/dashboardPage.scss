@@ -2,25 +2,117 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 954px;
-}
+  width: 100%;
 
-.table-container {
-
-  .table-container__cell {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    .cell-name-color {
-      width: 4px;
-      height: 70px;
-      border-top-left-radius: 3px;
-      border-bottom-left-radius: 3px ;
-    }
-    .td-content {
-      width: 389px;
-      height: 40px;
-    }
+  .column-names {
+    margin-bottom: 40px;
   }
+
+  .table-container {
+    border: 0px solid ;
+    padding-right: 52px;
+
+    .table-container--row {
+      width: 100%;
+      height: 70px;
+      border-radius: 3px;
+      background-color: #FFFFFF;
+      //box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); я бы добавил но в фигме ее нет
+
+      th {
+        font-weight: 500;
+        font-size: 11px;
+        line-height: 12.89px;
+        color: #999999;
+      }
+
+      .table-container__cell {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        .cell-name-color {
+          width: 4px;
+          height: 70px;
+          border-top-left-radius: 3px;
+          border-bottom-left-radius: 3px ;
+        }
+        .td-content--name {
+          width: 389px;
+          height: 40px;
+          color: #474747;
+          font-size:13px;
+          line-height: 15.23px;
+        }
+
+      }
+      .td-content--type {
+        width: 100px;
+        height: 30px;
+
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14.06px;
+        color: #5C5C5C;
+
+      }
+      .td-content--status {
+        width: 62px;
+        height: 30px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14.06px;
+
+        &.online {
+          color: #1BDA9D;
+        }
+        &.paused {
+          color: #FF8346;
+        }
+        &.stopped {
+          color: #FE4848;
+        }
+        &.draft {
+          color: #5C5C5C;
+        }
+
+
+      }
+      .td-content--sites {
+        width: 117px;
+        height: 30px;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14.06px;
+        margin-right: 60px;
+        color: #5C5C5C;
+      }
+    }
+    .results-not-found {
+      width: 810px;
+      height: 70px;
+      font-family: Montserrat, sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 21.94px;
+      text-align: center;
+      color: #222222;
+
+      // Если нужно центрировать элемент на странице:
+      margin: 0 auto; // Центрирование по горизонтали
+      position: relative;
+      top: 315px; // Отступ сверху
+      left: 114px; // Отступ слева
+    }
+
+
+
+  }
+
+
+
+}
+table {
+  border-spacing: 0px 5px;
 }
 

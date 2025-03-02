@@ -11,7 +11,7 @@ export const ResultsPage: React.FC<TResultsPageProps> = ({}) => {
     const navigate = useNavigate();
     return (
         <div className="results-page">
-            <div>
+            <div className={"results-page__name"}>
                 {location.state.testName}
             </div>
             <NavigateButton  onNavigate={() => navigate("/")}/>

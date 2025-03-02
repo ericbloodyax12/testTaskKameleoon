@@ -2,7 +2,7 @@ import {JSX} from "react";
 
 import {DashboardPage} from "../pages/DashboardPage/DashboardPage.tsx";
 import {ResultsPage} from "../pages/resultPage/ResultsPage.tsx";
-import {FinalizedPage} from "../pages/FinalizedPage.tsx";
+import {FinalizedPage} from "../pages/DashboardPage/finalizedPage/FinalizedPage.tsx";
 import {EPathCaption} from "../utils/getNavigateButtonCaption.ts";
 
 export const paths = {
