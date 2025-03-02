@@ -8,14 +8,14 @@ type TNavigateButtonProps = {
     onNavigate?: MouseEventHandler<HTMLButtonElement | HTMLDivElement> | undefined;
     children?: string;
     isTableButton?: boolean;
-    buttonStyle?: string
+    buttonText?: string
 }
 
-export const NavigateButton: React.FC<TNavigateButtonProps> = ({onNavigate, children, isTableButton, buttonStyle}) => {
+export const NavigateButton: React.FC<TNavigateButtonProps> = ({onNavigate, children, isTableButton, buttonText}) => {
     return (
         <div className={"navigate-button-container"}>
             {isTableButton
-                ?   <button onClick={onNavigate} className={`navigate-button ${buttonStyle}`}>
+                ?   <button onClick={onNavigate} className={`navigate-button ${buttonText}`}>
                         {children}
                     </button>
                 :   <div className={"navigate-button--back"} onClick={onNavigate}>

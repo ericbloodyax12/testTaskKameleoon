@@ -7,6 +7,7 @@ interface DataContextType {
     sites: Site[];
     loading: boolean;
     error: string | null;
+    setTests:  React.Dispatch<React.SetStateAction<Test[]>>;
 }
 
 
@@ -44,7 +45,7 @@ export const  DataProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }, [])
 
     return (
-        <DataContext.Provider value={{ tests, sites, loading, error }}>
+        <DataContext.Provider value={{ tests, sites, loading, error, setTests }}>
             {children}
         </DataContext.Provider>
     )

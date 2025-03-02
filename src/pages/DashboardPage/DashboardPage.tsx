@@ -10,13 +10,15 @@ import {EPathCaption, getNavigateButtonCaption} from "../../utils/getNavigateBut
 import {NavigateOptions, useNavigate} from "react-router-dom";
 import {paths} from "../../routes/Routes.tsx";
 import {DashboardTd} from "./dashboardTd/DashboardTd.tsx";
+import {sortTestsByType} from "./helper/sortTestsByType.ts";
 
 type TDashboardPageProps = {}
 
 export const DashboardPage: React.FC<TDashboardPageProps> = ({}) => {
 
-    const {tests, loading, error} = useData();
-    const [filter, setFilter] = useState('');
+    const {tests, loading, error, setTests} = useData();
+    const [direction, setDirection] = useState<'asc' | 'desc'>("asc")
+    const [filterValue, setFilterValue] = useState('');
     const navigate = useNavigate();
 
 
@@ -36,19 +38,22 @@ export const DashboardPage: React.FC<TDashboardPageProps> = ({}) => {
     }
 
     const filteredTests = tests.filter((test) =>
-        test.name.toLowerCase().includes(filter.toLowerCase())
+        test.name.toLowerCase().includes(filterValue.toLowerCase())
     );
-
+debugger
     return (
         <div className={"main-div-container-dashboard"}>
-            <TextField filter={filter} setFilter={setFilter} count={filteredTests.length}/>
+            <TextField filter={filterValue} setFilter={setFilterValue} count={filteredTests.length}/>
             {
                 filteredTests.length > 0
                     ? <table className={"table-container"}>
                         <thead>
                         <tr className={'column-names'}>
                             <th style={{paddingLeft: "19px"}}>Name</th>
-                            <th>Type</th>
+                            <th>Type <div style={{cursor: "pointer"}} onClick={() => {
+                                setDirection((prevState) => prevState === "asc" ?  "desc" : "asc" );
+                                setTests(sortTestsByType(filteredTests, direction))
+                            }}>&#8595;</div></th>
                             <th>Status</th>
                             <th>Site</th>
                             <></>
@@ -73,7 +78,7 @@ export const DashboardPage: React.FC<TDashboardPageProps> = ({}) => {
                                     <td>
                                         <NavigateButton
                                             isTableButton
-                                            buttonStyle={getNavigateButtonCaption(test.status) === EPathCaption.FINALIZE ? "finalize" : "results"}
+                                            buttonText={getNavigateButtonCaption(test.status) === EPathCaption.FINALIZE ? "finalize" : "results"}
                                             onNavigate={() => {
                                                 const [path, options] = navigator(test)
                                                 navigate(path, options)
