@@ -11,10 +11,10 @@ import {NavigateOptions, useNavigate} from "react-router-dom";
 import "./dashboard.scss"
 
 type DashboardTableProps = {
-    filteredTests: Test[]; // Отфильтрованные тесты
-    setTests: Dispatch<SetStateAction<Test[]>>; // Функция для обновления тестов
-    direction: 'asc' | 'desc'; // Направление сортировки
-    setDirection: Dispatch<SetStateAction<"asc" | "desc">>; // Функция для изменения направления сортировки
+    filteredTests: Test[];
+    setTests: Dispatch<SetStateAction<Test[]>>;
+    direction: 'asc' | 'desc';
+    setDirection: Dispatch<SetStateAction<"asc" | "desc">>;
 };
 
 export const DashboardTable: FC<DashboardTableProps> = ({
