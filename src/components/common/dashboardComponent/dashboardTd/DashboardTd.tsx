@@ -24,7 +24,18 @@ export const DashboardTd: React.FC<TDashboardTdProps> = ({className,content, sta
     return (
         <td>
             <div className={`cell-template ${className} ${statusClass}`}>
-                <div style={{width: "100%", display: "flex", alignItems: "center"}}>{typeof content === 'object' ? JSON.stringify(content) : content}</div>
+                <div style={
+                    {
+                        width: "100%",
+                        display: "flex",
+                        alignItems: "center"
+                    }
+                }
+                >{
+                    typeof content === 'object'
+                        ? JSON.stringify(content)
+                        : content}
+                </div>
             </div>
         </td>
     );

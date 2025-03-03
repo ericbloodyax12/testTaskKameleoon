@@ -18,7 +18,7 @@ export const SortColumn: React.FC<TSortColumnProps> = ({setDirection,setTests,fi
             Type
             <div
                 style={{cursor: "pointer"}} onClick={() => {
-                setDirection((prevState) => prevState === "asc" ? "desc" : "asc");
+                setDirection((prevState) => prevState === "asc" ? "desc" : "asc")
                 setTests(sortTestsByType(filteredTests, direction))
             }}><SortIcon/></div>
         </div>

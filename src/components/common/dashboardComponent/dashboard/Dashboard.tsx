@@ -14,7 +14,7 @@ type DashboardTableProps = {
     filteredTests: Test[];
     setTests: Dispatch<SetStateAction<Test[]>>;
     direction: 'asc' | 'desc';
-    setDirection: Dispatch<SetStateAction<"asc" | "desc">>;
+    setDirection: Dispatch<SetStateAction<"asc" | "desc">>
 };
 
 export const DashboardTable: FC<DashboardTableProps> = ({
@@ -25,11 +25,11 @@ export const DashboardTable: FC<DashboardTableProps> = ({
                                                         }) => {
     const navigate = useNavigate()
     const navigator = (test: Test): [string, NavigateOptions] => {
-        const pathTrack = getNavigateButtonCaption(test.status) === EPathCaption.FINALIZE;
+        const pathTrack = getNavigateButtonCaption(test.status) === EPathCaption.FINALIZE
         return pathTrack
             ? [paths.FINALIZE(test.id), {state: {testName: test.name, headerCaption: EPathCaption.FINALIZE}}]
-            : [paths.RESULTS(test.id), {state: {testName: test.name, headerCaption: EPathCaption.RESULTS}}];
-    };
+            : [paths.RESULTS(test.id), {state: {testName: test.name, headerCaption: EPathCaption.RESULTS}}]
+    }
 
     return (
         <table className="table-container">
@@ -85,5 +85,5 @@ export const DashboardTable: FC<DashboardTableProps> = ({
             ))}
             </tbody>
         </table>
-    );
-};
+    )
+}

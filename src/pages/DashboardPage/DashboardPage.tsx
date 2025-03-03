@@ -12,16 +12,16 @@ type TDashboardPageProps = {}
 
 export const DashboardPage: React.FC<TDashboardPageProps> = ({}) => {
 
-    const {tests, loading, error, setTests} = useData();
+    const {tests, loading, error, setTests} = useData()
     const [direction, setDirection] = useState<'asc' | 'desc'>("asc")
-    const [filterValue, setFilterValue] = useState('');
+    const [filterValue, setFilterValue] = useState('')
 
     if (loading) {
-        return <p>Loading...</p>;
+        return <p>Loading...</p>
     }
 
     if (error) {
-        return <p>Error: {error}</p>;
+        return <p>Error: {error}</p>
     }
 
     const filteredTests = tests.filter((test) =>
@@ -45,6 +45,6 @@ export const DashboardPage: React.FC<TDashboardPageProps> = ({}) => {
 
         </div>
     )
-        ;
+
 }
 

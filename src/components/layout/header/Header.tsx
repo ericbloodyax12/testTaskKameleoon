@@ -6,8 +6,8 @@ import {useLocation} from "react-router-dom";
 type THeaderProps = {}
 
 export const Header: React.FC<THeaderProps> = ({}) => {
-    const location = useLocation();
-    const headerCaption = location.state?.headerCaption ?? "Dashboard";
+    const location = useLocation()
+    const headerCaption = location.state?.headerCaption ?? "Dashboard"
     console.log(location.state)
     return (
         <header className="header">
