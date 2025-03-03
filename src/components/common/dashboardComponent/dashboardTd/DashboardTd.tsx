@@ -1,5 +1,5 @@
 import React from 'react';
-import {Test} from "../../../services/api.ts";
+import {Test} from "../../../../services/api.ts";
 
 import "./dashboardTd.scss"
 type AdditionalType = {

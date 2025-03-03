@@ -9,8 +9,9 @@ import {ESites, SITE_COLORS, SITE_URLS, Test} from "../../services/api.ts";
 import {EPathCaption, getNavigateButtonCaption} from "../../utils/getNavigateButtonCaption.ts";
 import {NavigateOptions, useNavigate} from "react-router-dom";
 import {paths} from "../../routes/Routes.tsx";
-import {DashboardTd} from "./dashboardTd/DashboardTd.tsx";
-import {sortTestsByType} from "./helper/sortTestsByType.ts";
+import {DashboardTd} from "../../components/common/dashboardComponent/dashboardTd/DashboardTd.tsx";
+import {SortColumn} from "../../components/common/dashboardComponent/sortColumn/sortColumn.tsx";
+import {TableHeader} from "../../components/common/dashboardComponent/tableHeader/TableHeader.tsx";
 
 type TDashboardPageProps = {}
 
@@ -40,25 +41,32 @@ export const DashboardPage: React.FC<TDashboardPageProps> = ({}) => {
     const filteredTests = tests.filter((test) =>
         test.name.toLowerCase().includes(filterValue.toLowerCase())
     );
-debugger
     return (
         <div className={"main-div-container-dashboard"}>
             <TextField filter={filterValue} setFilter={setFilterValue} count={filteredTests.length}/>
             {
                 filteredTests.length > 0
                     ? <table className={"table-container"}>
-                        <thead>
-                        <tr className={'column-names'}>
-                            <th style={{paddingLeft: "19px"}}>Name</th>
-                            <th>Type <div style={{cursor: "pointer"}} onClick={() => {
-                                setDirection((prevState) => prevState === "asc" ?  "desc" : "asc" );
-                                setTests(sortTestsByType(filteredTests, direction))
-                            }}>&#8595;</div></th>
-                            <th>Status</th>
-                            <th>Site</th>
-                            <></>
-                        </tr>
-                        </thead>
+                       <TableHeader
+                           columns={[
+                               { label: 'Name', customStyles: { paddingLeft: '19px' } },
+                               {
+                                   label: 'Type',
+                                   isSortable: true,
+                                   renderSortComponent: () => (
+                                       <SortColumn
+                                           setTests={setTests}
+                                           filteredTests={filteredTests}
+                                           setDirection={setDirection}
+                                           direction={direction}
+                                       />
+                                   ),
+                               },
+                               { label: 'Status' },
+                               { label: 'Site' },
+                               { label: '' },
+                           ]}
+                       />
                         <tbody>
                         {
                             filteredTests.map((test) => (
