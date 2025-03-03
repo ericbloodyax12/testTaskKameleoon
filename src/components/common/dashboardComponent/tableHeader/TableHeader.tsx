@@ -1,6 +1,6 @@
 import React, {JSX} from 'react';
 
-import "../../../../pages/DashboardPage/dashboardPage.scss"
+import "../dashboard/dashboard.scss"
 
 type TableColumn = {
     label: string;
